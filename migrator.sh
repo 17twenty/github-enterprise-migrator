@@ -36,7 +36,7 @@ echo "It will start in 5 seconds (CTRL-C to cancel)..."
 sleep 5
 
 # Get a list of all the remote repos (using the AUTH_TOKEN for Github)
-ALL_REPOS=$(curl -H "Authorization: token $GITHUB_PRIVATE_AUTH_TOKEN" https://api.github.com/orgs/$GITHUB_PRIVATE_ORG/repos)
+ALL_REPOS=$(curl -H "Authorization: token $GITHUB_PRIVATE_AUTH_TOKEN" https://api.github.com/orgs/$GITHUB_PRIVATE_ORG/repos?per_page=100)
 REPO_NAMES_STRING=$(echo $ALL_REPOS | jq '.[] | .name' | sed 's/"//g')
 REPO_HTTPS_STRING=$(echo $ALL_REPOS | jq '.[] | .clone_url'| sed 's/"//g')
 
